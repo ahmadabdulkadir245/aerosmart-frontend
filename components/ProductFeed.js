@@ -20,7 +20,7 @@ const ProductFeed = () => {
         page: 1
       }
     };
-   fetch('process.env.GRAPHQL_URL', {
+   fetch(process.env.GRAPHQL_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
