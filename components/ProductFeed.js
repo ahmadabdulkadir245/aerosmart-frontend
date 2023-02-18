@@ -1,5 +1,6 @@
 import Products from './Products'
 import { useEffect, useState } from 'react'
+import { GRAPHQL_URL } from '../lib/constants'
 const ProductFeed = () => {
   const [products, setProducts] = useState([])
   useEffect(() => {
@@ -20,7 +21,7 @@ const ProductFeed = () => {
         page: 1
       }
     };
-   fetch(process.env.GRAPHQL_URL, {
+   fetch(GRAPHQL_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

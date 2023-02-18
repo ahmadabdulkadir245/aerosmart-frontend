@@ -1,5 +1,6 @@
 import Head from "next/head"
 import { useState } from "react"
+import { GRAPHQL_URL } from "../../lib/constants"
 
 const AddProduct = () => {
   const [productData, setProductData] = useState({
@@ -29,7 +30,7 @@ const AddProduct = () => {
       description: productData.description,
     }
   };
- fetch(process.env.GRAPHQL_URL, {
+ fetch(GRAPHQL_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
