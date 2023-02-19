@@ -55,7 +55,7 @@ const AddProduct = () => {
 
       setTimeout(() => {
         setSuccess(true)
-      }, 1000);
+      }, 0);
       setTimeout(() => {
         setSuccess(false)
       }, 8000);
@@ -136,7 +136,7 @@ const AddProduct = () => {
         placeholder='quantity'
         name="quantity"
         required
-        // value={age}
+        value={productData.quantity}
         // onChange={productInputHandler.bind(this, 'quantity')}
       />
       </div>

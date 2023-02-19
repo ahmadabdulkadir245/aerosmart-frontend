@@ -5,7 +5,7 @@ module.exports = {
   swcMinify: true,
   optimizeFonts: true,
   images: {
-    domains: ['www.shutterstock.com', 'www.pexels.com/'],
+    domains: ['www.shutterstock.com', 'images.pexels.com'],
 },
 }
 
