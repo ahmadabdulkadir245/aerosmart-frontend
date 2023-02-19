@@ -1,6 +1,7 @@
+import { GRAPHQL_URL } from '../lib/constants'
+
 import Products from './Products'
 import { useEffect, useState } from 'react'
-import { GRAPHQL_URL } from '../lib/constants'
 const ProductFeed = () => {
   const [products, setProducts] = useState([])
   useEffect(() => {
