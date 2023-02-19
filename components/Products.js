@@ -9,7 +9,6 @@ const Products = ({ id, title, price, description, category, image }) => {
         setLoading(true);
       }, 500);
     }, []);
-    console.log(image)
   return (
     <>
       {loading ? (

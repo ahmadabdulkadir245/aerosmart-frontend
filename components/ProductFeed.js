@@ -33,11 +33,12 @@ const ProductFeed = () => {
         return res.json();
       })
       .then(productData => {
-        setProducts(productData.data?.products?.products)
+        const recievedData = productData.data?.products?.products
+        recievedData.reverse()
+        setProducts(recievedData)
       })
   }, [products])
 
-  
   return (
     <div
     className='grid grid-cols-2 grid-flow-row-dense md:grid-cols-3 lg:grid-cols-3

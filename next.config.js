@@ -5,14 +5,8 @@ module.exports = {
   swcMinify: true,
   optimizeFonts: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'www.shutterstock.com',
-      },
-    ],
-    minimumCacheTTL: 1500000,
-  },
+    domains: ['www.shutterstock.com', 'www.pexels.com/'],
+},
 }
 
 
