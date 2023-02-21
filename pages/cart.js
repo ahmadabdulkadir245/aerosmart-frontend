@@ -2,7 +2,7 @@ import Head from "next/head"
 import ProductAddedToCart from "../components/ProductAddedToCart";
 import { useSelector } from "react-redux";
 import { selectedItems, selectTotal } from "../slices/basketSlice";
-
+import { GRAPHQL_URL } from '../lib/constants'
 
 function Cart() {
   const cartItems = useSelector(selectedItems);
@@ -81,7 +81,7 @@ export const getServerSideProps = async () => {
     }
     `
   };
-   const result = await fetch( 'http://localhost:8000/graphql', {
+   const result = await fetch( GRAPHQL_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
