@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import {AiFillStar} from "react-icons/ai"
+import { GRAPHQL_URL } from '../lib/constants'
+
 let prodId
 function Product({product}) {
   const router = useRouter()
@@ -78,7 +80,7 @@ export const getServerSideProps = async () => {
     }
     `
   };
-   const result = await fetch( 'http://localhost:8000/graphql', {
+   const result = await fetch(GRAPHQL_URL , {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
