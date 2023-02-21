@@ -67,39 +67,3 @@ function Cart() {
 
 export default Cart
 
-export const getServerSideProps = async () => {
-  const graphqlQuery = {
-    query: `
-    {
-      product(id: 3) {
-        id
-        title
-        price
-        imageUrl
-        description
-      }
-    }
-    `
-  };
-   const result = await fetch( GRAPHQL_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(graphqlQuery)
-    })
-      .then(res => {  
-        return res.json();
-      })
-      .then(resData => {
-        return resData
-      })
-      .catch(err => console.log(err))
-     
-      const data = await result
-    return {
-      props: {
-        cart: data.data.product
-      }
-    }
-  }
