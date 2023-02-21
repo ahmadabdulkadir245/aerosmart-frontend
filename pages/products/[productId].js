@@ -14,7 +14,7 @@ function Product({product}) {
         <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between mt-5">
         <div className="pt-1">
           <h3 className="text-2xl font-titilliumWeb capitalize font-semibold">{product.title}</h3>
         </div>
@@ -25,7 +25,7 @@ function Product({product}) {
       </div>
 
       <div>
-        <h2 className="my-3 capitalize text-lg ">description</h2>
+        <h2 className="mt-3 mb-2 capitalize text-lg underline tracking-wide">description</h2>
         <p>{product.description}</p>
       </div>
 
@@ -41,7 +41,7 @@ function Product({product}) {
       </div>
       </div>
 
-      <div className="flex items-center justify-between my-4">
+      <div className="flex items-center justify-between my-6">
           <div className="flex items-center space-x-3">
           <div className="w-10 h-10 rounded-full bg-white shadow-md"></div>
           <div className="w-10 h-10 rounded-full bg-yellow-400 shadow-md"></div>
@@ -67,11 +67,14 @@ function Product({product}) {
 export default Product
 
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
+  // console.log(context)
+  const {productId} = context.query
+  console.log(`thsi is the product Id ${productId}`)
   const graphqlQuery = {
     query: `
     {
-      product(id: 1) {
+      product(id: ${productId}) {
         title
         price
         imageUrl
@@ -98,7 +101,7 @@ export const getServerSideProps = async () => {
       const data = await result
     return {
       props: {
-        product: data.data.product
+        product: data?.data?.product
       }
     }
   }

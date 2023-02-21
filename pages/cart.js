@@ -44,7 +44,7 @@ function Cart() {
           )
         )}
       </div>
-      <div className="fixed left-0 bottom-0 px-3 shadow-lg w-full  text-xl bg-white z-10 pt-2 overflow-hidden">
+      <div className="fixed left-0 bottom-0 px-3 shadow-lg w-full  text-xl bg-white z-10 pt-2 overflow-hiddentext-gray-500">
               <div className="flex justify-between items-center capitalize ">
                 total payment:
               <div className="flex">
@@ -53,7 +53,7 @@ function Cart() {
               </div>
 
               <button
-            className=' my-3 mx-auto bg-yellow-400 p-4 w-full text-white rounded-md  capitalize  text-2xl tracking-wider font-light'
+            className=' my-3 mx-auto bg-yellow-400 p-4 w-full text-white rounded-md  capitalize  text-xl tracking-wider font-light'
             // onClick={}
           >
           checkout
