@@ -5,14 +5,8 @@ module.exports = {
   swcMinify: true,
   optimizeFonts: true,
   images: {
-    domains: ['www.shutterstock.com', 'images.pexels.com'],
-},
+        domains: ['www.shutterstock.com', 'images.pexels.com'],
+  },
 }
 
 
-// module.exports =  {
-//   reactStrictMode: true,
-//   images: {
-//       domains: ['www.shutterstock.com'],
-//   },
-// }
