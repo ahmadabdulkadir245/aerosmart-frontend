@@ -48,7 +48,7 @@ function Cart() {
               <div className="flex justify-between items-center capitalize ">
                 total payment:
               <div className="flex">
-                N{cartTotal}
+                N{cartTotal.toLocaleString()}
               </div>
               </div>
 

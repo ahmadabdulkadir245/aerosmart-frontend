@@ -19,7 +19,7 @@ function Banner() {
     }, 500);
   }, []);
   return (
-    <div className='w-full xl:w-[1024px] flex justify-center m-auto  mt-1 transition-all duration-700 ease-out'>
+    <div className='w-full xl:w-[1024px] flex justify-center m-auto  mt-2 transition-all duration-700 ease-out'>
     {loading ?
     <Swiper
     //   slidesPerView={1}

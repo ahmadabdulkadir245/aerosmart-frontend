@@ -28,7 +28,7 @@ function ProductAddedToCart({ id, title, price, category, description, image }) 
   return (
     <div className='grid grid-cols-3  px-3 gap-4 my-4'>
       
-      <div className='relative w-[120px] h-[120px] text-gray-600 '>
+      <div className='relative w-full h-[120px] text-gray-600 '>
         <Image src={image} alt={title} fill />
       </div>
       <div className='col-span-2 '>
@@ -42,7 +42,7 @@ function ProductAddedToCart({ id, title, price, category, description, image }) 
             ))}
         </div> */}
               <div className="flex-nowrap flex justify-between mt-[19px]">
-        <div className=' flex justify-between items-center w-36'>
+        <div className=' flex justify-between items-center w-32'>
         <div
           className={`flex justify-center items-center py-2 px-3 bg-yellow-400 transition duration-200 linear rounded-md ${
             numberOfItems < 2 ? " opacity-50" : ""
@@ -56,7 +56,7 @@ function ProductAddedToCart({ id, title, price, category, description, image }) 
         </div>
           </div>
 
-        <div className='flex pr-3'>
+        <div className='flex '>
         <div
           className='flex space-x-3 items-center  bg-red-500  py-2 px-3 text-white rounded-md hover:bg-red-600 cursor-pointer transition duration-200 ease-in'
           onClick={removeItemFromBasket}
