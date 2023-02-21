@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import {AiFillStar} from "react-icons/ai"
-import { GRAPHQL_URL } from '../lib/constants'
+import { GRAPHQL_URL } from '../../lib/constants'
 
 let prodId
 function Product({product}) {

@@ -1,6 +1,6 @@
 import Head from "next/head"
 import { useState } from "react"
-import { GRAPHQL_URL } from '../lib/constants'
+import { GRAPHQL_URL } from '../../lib/constants'
 
 
 const AddProduct = () => {
