@@ -12,6 +12,7 @@
     "@heroicons/react": "^2.0.13",
     "@reduxjs/toolkit": "^1.9.1",
     "@tailwindcss/line-clamp": "^0.4.2",
+    "react-redux": "8.0.5",
     "axios": "^1.2.2",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
