@@ -1,15 +1,15 @@
-import { GRAPHQL_URL } from '../lib/constants'
-
 import Products from './Products'
 import { useEffect, useState } from 'react'
 const ProductFeed = () => {
   const [products, setProducts] = useState([])
+  const page = 1
   useEffect(() => {
     const graphqlQuery = {
       query: `
       {
-        products(page: 1) {
+        products(page: ${page}) {
           products{
+            id
             title
             price
             imageUrl
@@ -17,12 +17,9 @@ const ProductFeed = () => {
           }
         }
       }
-      `,
-      variables: {
-        page: 1
-      }
+      `
     };
-   fetch(GRAPHQL_URL, {
+   fetch('http://localhost:8000/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -39,6 +36,7 @@ const ProductFeed = () => {
       })
   }, [products])
 
+  
   return (
     <div
     className='grid grid-cols-2 grid-flow-row-dense md:grid-cols-3 lg:grid-cols-3

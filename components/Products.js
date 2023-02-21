@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { addToBasket } from "../slices/basketSlice";
+import { useDispatch } from "react-redux"
 
 const Products = ({ id, title, price, description, category, image }) => {
     const [loading, setLoading] = useState(false);
@@ -9,19 +11,29 @@ const Products = ({ id, title, price, description, category, image }) => {
         setLoading(true);
       }, 500);
     }, []);
+    const dispatch = useDispatch();
+    const addProductToBasket = () => {
+      const Product = {
+        id,
+        title,
+        price,
+        description,
+        category,
+        image,
+      };
+      dispatch(addToBasket(Product));
+    };
   return (
     <>
       {loading ? (
         <div className='relative flex flex-col  bg-white z-30 shadow-xl transition-all duration-500 linear rounded-md text-gray-500'>
-          <Link href={`/shoes/${id}`}>
-            {/* <a> */}
+          <Link href={`/products/${id}`}>
               <p className='absolute top-2 right-2 text-xs italic text-gray-400 z-20'>
                 {category}
               </p>
               <div className='relative w-full h-[160px]  overflow-hidden rounded-t-md'>
-                <Image src={image} alt={image} layout='fill' className=""/>
+                <Image src={image} alt={image} fill className=""/>
               </div>
-            {/* </a> */}
           </Link>
           <h4 className='my-1 lg:my-3  px-2 capitalize '>{title}</h4>
           <div className='flex  px-2'>
@@ -42,7 +54,7 @@ const Products = ({ id, title, price, description, category, image }) => {
           )} */}
           <button
             className=' mt-2 mx-auto bg-yellow-400 p-2 w-[90%] text-white rounded-md  uppercase mb-2 text-sm'
-            // onClick={addShoeToBasket}
+            onClick={addProductToBasket}
           >
             Add To Cart
           </button>
@@ -59,7 +71,7 @@ const Products = ({ id, title, price, description, category, image }) => {
 
           <div className='my-2 ml-2 h-8 w-[95%] bg-gray-300 rounded-md'></div>
           <div className=' ml-2 h-3 w-[40%] bg-gray-300 rounded-md'></div>
-          <button className=' my-2 mx-auto p-2 w-[90%] h-[40px]  bg-gray-300 rounded-md'>
+          <button className=' my-2 mx-auto p-2 w-[90%] h-[40px]  bg-gray-300 rounded-md' >
           </button>
         </div>
       )}

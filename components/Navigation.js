@@ -9,6 +9,9 @@ import { useState, useEffect } from 'react';
 import router from 'next/router'
 import { useRecoilState } from 'recoil';
 import { navState } from '../atoms/navHandler';
+import { useSelector } from "react-redux"
+import { selectedItems } from '../slices/basketSlice';
+
 
 const items = []
 function Navigation() {
@@ -24,6 +27,8 @@ function Navigation() {
   const showSearchHandeler = () => {
     setShowSearch(!showSearch);
   };
+
+  const productInCart = useSelector(selectedItems)
 
   return (
 <>
@@ -85,7 +90,7 @@ function Navigation() {
                   className='link flex items-center relative '
                 >
                   <span className='absolute -top-1 -right-1 md:right-10 h-4 text-xs w-4 bg-yellow-400 rounded-full  text-center font-semibold items-center font-titilliumWeb transition-all duration-500 linear '>
-                    {items.length}
+                    {productInCart.length}
                   </span>
                   <AiOutlineShoppingCart className='w-6 h-6 lg:w-7 lg:h-7' />
                   <p className='hidden sm:inline font-semibold md:text-sm font-titilliumWeb'>

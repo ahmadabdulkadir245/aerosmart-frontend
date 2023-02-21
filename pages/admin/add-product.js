@@ -1,5 +1,3 @@
-import { GRAPHQL_URL } from "../../lib/constants"
-
 import Head from "next/head"
 import { useState } from "react"
 
@@ -34,7 +32,7 @@ const AddProduct = () => {
     }
   };
 
- fetch(GRAPHQL_URL, {
+ fetch('http://localhost:8000/graphql', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -55,7 +53,7 @@ const AddProduct = () => {
 
       setTimeout(() => {
         setSuccess(true)
-      }, 0);
+      }, 1000);
       setTimeout(() => {
         setSuccess(false)
       }, 8000);
