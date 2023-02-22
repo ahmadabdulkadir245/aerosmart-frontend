@@ -8,10 +8,10 @@ import { RxInstagramLogo } from "react-icons/rx"
 
 function Footer() {
   return (
-    <div className="relative left-0 bottom-0 bg-white  p-10 text-gray-500 rounded-tl-[120px] mt-10 shadow-lg">
+    <div className="relative left-0 bottom-0 bg-white  py-10 px-5 text-gray-500 rounded-tl-[120px] mt-10 shadow-xl">
     <div
     className='grid md:grid-cols-2 grid-flow-row-dense lg:grid-cols-4
-  mx-auto m-2 gap-8 px-2 md:px-4 mt-12'
+  mx-auto m-2 gap-10 px-2 md:px-4 mt-12'
   >
     <div >
             <h3 className="capitalize text-3xl mb-3 font-bold">Aerosmart</h3>
@@ -94,7 +94,7 @@ function Footer() {
 
     </div>
                     <div className="h-[1px] w-full my-4 bg-gray-700"></div>
-                    <p className="font-bold px-1">Aerosmart &#169; 2023 - All Rights Reserved</p>
+                    <p className="font-bold px-1 text-center">Aerosmart &#169; 2023 - All Rights Reserved</p>
     </div>
   )
 }

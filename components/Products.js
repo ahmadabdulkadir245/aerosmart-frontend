@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { addToBasket } from "../slices/basketSlice";
+import { addToCart } from "../slices/cartSlice";
 import { useDispatch } from "react-redux"
 import {TbCurrencyNaira} from "react-icons/tb"
 
@@ -22,7 +22,7 @@ const Products = ({ id, title, price, description, category, image }) => {
         category,
         image,
       };
-      dispatch(addToBasket(Product));
+      dispatch(addToCart(Product));
     };
   return (
     <>

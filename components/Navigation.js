@@ -10,7 +10,7 @@ import router from 'next/router'
 import { useRecoilState } from 'recoil';
 import { navState } from '../atoms/navHandler';
 import { useSelector } from "react-redux"
-import { selectedItems } from '../slices/basketSlice';
+import { selectedcartItems } from '../slices/cartSlice';
 
 
 const items = []
@@ -28,7 +28,7 @@ function Navigation() {
     setShowSearch(!showSearch);
   };
 
-  const productInCart = useSelector(selectedItems)
+  const productInCart = useSelector(selectedcartItems)
 
   return (
 <>

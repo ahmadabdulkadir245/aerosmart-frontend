@@ -34,7 +34,7 @@ const AddProduct = () => {
     }
   };
 
- fetch(GRAPHQL_URL, {
+ fetch('GRAPHQL_URL', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

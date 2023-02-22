@@ -1,13 +1,18 @@
 import Head from "next/head"
 import ProductAddedToCart from "../components/ProductAddedToCart";
 import { useSelector } from "react-redux";
-import { selectedItems, selectTotal } from "../slices/basketSlice";
+import { selectedcartItems, selectTotal } from "../slices/cartSlice";
 import {TbCurrencyNaira} from "react-icons/tb"
+import { useRouter } from "next/navigation";
+
 
 
 function Cart() {
-  const cartItems = useSelector(selectedItems);
+  const router = useRouter()
+  const cartItems = useSelector(selectedcartItems);
   const cartTotal = useSelector(selectTotal)
+  const cartId = cartItems.map(cartItem => cartItem.product.id)
+  console.log(cartItems)
   if (cartItems.length === 0) {
     return (
       <div className='iceland mt-4 m-auto w-[95%] lg:max-w-5xl text-[#181818] '>
@@ -26,21 +31,21 @@ function Cart() {
   }
   return (
     <div className='font-changa'>
-      <div className='mt-5 m-auto  lg:max-w-5xl text-[#181818] uppercase h-[calc(100vh-124px)]'>
+      <div className='mt-5 m-auto  lg:max-w-5xl text-[#181818] uppercase h-[calc(100vh-124px)] transition-all duration-500 ease-in'>
         {/* <h1 className='text-4xl text-center md:text-left '>
           ca<span className='text-yellow-600'>rt</span>
         </h1>
         <hr className='w-[86%] m-auto md:w-full h-[2px] bg-[#181818]    ' /> */}
         {cartItems.map(
-          ({ id, title, price, description, category, image }) => (
+          ({ product, qty}) => (
             <ProductAddedToCart
-              key={id}
-              id={id}
-              title={title}
-              price={price}
-              description={description}
-              category={category}
-              image={image}
+              key={product.id}
+              id={product.id}
+              title={product.title}
+              price={product.price}
+              description={product.description}
+              productQty={qty}
+              image={product.image}
             />
           )
         )}
@@ -56,7 +61,7 @@ function Cart() {
 
               <button
             className=' my-3 mx-auto bg-yellow-400 p-4 w-full text-white rounded-md  capitalize  text-xl tracking-wider font-light'
-            // onClick={}
+            onClick={() => router.push('/checkout')}
           >
           checkout
           </button>
