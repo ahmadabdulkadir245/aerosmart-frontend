@@ -2,7 +2,8 @@ import Head from "next/head"
 import ProductAddedToCart from "../components/ProductAddedToCart";
 import { useSelector } from "react-redux";
 import { selectedItems, selectTotal } from "../slices/basketSlice";
-import { GRAPHQL_URL } from '../lib/constants'
+import {TbCurrencyNaira} from "react-icons/tb"
+
 
 function Cart() {
   const cartItems = useSelector(selectedItems);
@@ -19,7 +20,7 @@ function Cart() {
           />
         </Head>
 
-        <p className=' text-center text-3xl mt-10'>No porducts in cart</p>
+        <p className=' text-center text-3xl mt-10 h-[90vh]'>No porducts in cart</p>
       </div>
     );
   }
@@ -47,8 +48,9 @@ function Cart() {
       <div className="fixed left-0 bottom-0 px-3 shadow-lg w-full  text-xl bg-white z-10 pt-2 overflow-hiddentext-gray-500">
               <div className="flex justify-between items-center capitalize ">
                 total payment:
-              <div className="flex">
-                N{cartTotal.toLocaleString()}
+              <div className="flex items-center">
+              <TbCurrencyNaira  className="w-5 h-5"/>
+              {cartTotal.toLocaleString()}
               </div>
               </div>
 

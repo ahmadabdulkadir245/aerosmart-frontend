@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { addToBasket } from "../slices/basketSlice";
 import { useDispatch } from "react-redux"
+import {TbCurrencyNaira} from "react-icons/tb"
 
 const Products = ({ id, title, price, description, category, image }) => {
     const [loading, setLoading] = useState(false);
@@ -44,8 +45,8 @@ const Products = ({ id, title, price, description, category, image }) => {
               ))} */}
           </div>
           <p className='text-sm font-rajdhani my-[2px]  md:my-2 truncate  px-2'>{description}</p>
-          <div className=' text-sm font-play px-2 text-gray-600'>
-            N{price}
+          <div className=' text-sm font-play px-2 text-gray-600 flex space-x-1'>
+            <TbCurrencyNaira  className="w-5 h-5"/>{price}
           </div>
           {/* {hasPrime && (
             <div className='flex items-center space-x-3 -mt-5 mb-2 px-2 '>
