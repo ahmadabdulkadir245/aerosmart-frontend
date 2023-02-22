@@ -30,8 +30,20 @@ function Cart() {
     );
   }
   return (
-    <div className='font-changa'>
-      <div className='mt-5 m-auto  lg:max-w-5xl text-[#181818] uppercase h-[calc(100vh-124px)] transition-all duration-500 ease-in'>
+    <div className=''>
+
+      <div className='mt-5 m-auto  lg:max-w-5xl  h-[calc(100vh-124px)] transition-all duration-500 ease-in'>
+        <div className="flex items-center justify-between  px-[12px] text-gray-800 bg-white py-2 rounded-md">
+          <div className="flex ">
+            <p className="uppercase">subtotal </p>
+            <p > - ({" "} {cartItems.length} {cartItems.length > 1 ? 
+            'Products' : 
+            'Product'} {" "} )</p>
+          </div>
+          <div>
+            <p className="flex items-center "><TbCurrencyNaira  className="w-5 h-5"/>{cartTotal.toLocaleString()}</p>
+          </div>
+        </div>
         {/* <h1 className='text-4xl text-center md:text-left '>
           ca<span className='text-yellow-600'>rt</span>
         </h1>
@@ -50,20 +62,21 @@ function Cart() {
           )
         )}
       </div>
-      <div className="fixed left-0 bottom-0 px-3 shadow-lg w-full  text-xl bg-white z-10 pt-2 overflow-hiddentext-gray-500">
-              <div className="flex justify-between items-center capitalize ">
+      <div className="fixed left-0 bottom-0 px-3 shadow-xl w-full  text-lg bg-white z-10 pt-2 overflow-hiddentext-gray-500">
+              {/* <div className="flex justify-between items-center capitalize ">
                 total payment:
               <div className="flex items-center">
               <TbCurrencyNaira  className="w-5 h-5"/>
               {cartTotal.toLocaleString()}
               </div>
-              </div>
+              </div> */}
 
               <button
-            className=' my-3 mx-auto bg-yellow-400 p-4 w-full text-white rounded-md  capitalize  text-xl tracking-wider font-light'
+            className=' mt-1 mb-2 mx-auto bg-yellow-400 py-2  w-full text-white rounded-md  capitalize  text-lg tracking-wider font-light flex justify-center items-center'
             onClick={() => router.push('/checkout')}
           >
-          checkout
+              
+          buy now |   <TbCurrencyNaira  className="w-6 h-7"/>{cartTotal.toLocaleString()}
           </button>
           </div>
 

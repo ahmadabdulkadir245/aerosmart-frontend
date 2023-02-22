@@ -31,8 +31,8 @@ function ProductAddedToCart({ id, title, productQty, description, image }) {
         <Image src={image} alt={title} fill />
       </div>
       <div className='col-span-2 '>
-        <p className='truncate uppercase'>{title}</p>
-      <p className="lowercase leading-5 line-clamp-2">{description} the description is too short so to make sure its up to two line</p>
+        <p className='truncate uppercase text-sm'>{title}</p>
+      <p className="lowercase leading-4 line-clamp-3 text-xs">{description} the description is too short so to make sure its up to two line</p>
         {/* <div className='flex  pr-3'>
           {Array(5)
             .fill(1)
@@ -43,14 +43,14 @@ function ProductAddedToCart({ id, title, productQty, description, image }) {
               <div className="flex-nowrap flex justify-between mt-[19px]">
         <div className=' flex justify-between items-center w-32'>
         <div
-          className={`flex justify-center items-center py-2 px-3 bg-yellow-400 transition duration-200 linear rounded-md ${
+          className={`flex justify-center items-center p-[6px] px-[10px] bg-yellow-400 transition duration-200 linear rounded-md ${
             productQty < 2 ? " opacity-50" : ""
           }`}
         >
           <AiOutlineMinus onClick={minusOneItemFromCart} className='text-white' />
         </div>
         <div>{productQty}</div>
-        <div className='flex justify-center items-center py-2 px-3 bg-yellow-500 rounded-md'>
+        <div className='flex justify-center items-center p-[6px] px-[10px] bg-yellow-500 rounded-md'>
           <AiOutlinePlus onClick={addOneItemToCart} className='text-white' />
         </div>
           </div>
