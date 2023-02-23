@@ -10,10 +10,10 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
     <RecoilRoot>
-      <Header />
+      {/* <Header /> */}
       <Component {...pageProps} />
     </RecoilRoot>
-    <Footer />
+    {/* <Footer /> */}
     </Provider>
   );
 }

@@ -8,7 +8,7 @@ import { BsBricks } from 'react-icons/bs'
 
 function SideBarLinks() {
   return (
-    <div className='px-[10px] py-1 pb-8 text-gray-500 capitalize text-md h-full overflow-y-scroll'>
+    <div className='px-[10px] py-[6px] pb-8 text-gray-500 capitalize text-md h-full overflow-y-scroll'>
         <div className='flex justify-between '>
             <button className='rounded-md border-2 border-gray-400 py-2 w-[47%]  '>Login</button>
             <button className='rounded-md border-2 border-gray-400 py-2 w-[47%]  '>Sign Up</button>
@@ -18,7 +18,7 @@ function SideBarLinks() {
 
         <SideBarLink Icon={RiUser3Line} title={'my account'} path={'/'}/>
         <SideBarLink Icon={AiOutlineShop} title={'orders'} path={'/'}/>
-        <SideBarLink Icon={CiShoppingCart} title={'cart'} path={'/'}/>
+        <SideBarLink Icon={CiShoppingCart} title={'cart'} path={'/cart'}/>
         <SideBarLink Icon={GiWoodBeam} title={'woods'} path={'/'}/>
         <SideBarLink Icon={MdConstruction} title={'metals'} path={'/'}/>
         <SideBarLink Icon={GiConcreteBag} title={'cement'} path={'/'}/>

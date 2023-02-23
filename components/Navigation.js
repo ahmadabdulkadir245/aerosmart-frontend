@@ -31,7 +31,7 @@ function Navigation() {
   const productInCart = useSelector(selectedcartItems)
 
   return (
-<>
+<div>
 {/* sidebar menu */}
 <SideBar openSideBar={openSideBar} showSearch={showSearch} />
     {/* navigation */}
@@ -89,7 +89,7 @@ function Navigation() {
                   onClick={() => router.push("/cart")}
                   className='link flex items-center relative '
                 >
-                  <span className='absolute -top-1 -right-1 md:right-10 h-4 text-xs w-4 bg-yellow-400 rounded-full  text-center font-semibold items-center font-titilliumWeb transition-all duration-500 linear '>
+                  <span className='absolute -top-1 -right-1 md:right-10 h-4 text-xs w-4 bg-yellow-400 rounded-full  text-center font-semibold items-center font-titilliumWeb transition-all duration-500 linear animate-pingOnce' key={productInCart.length} >
                     {productInCart.length}
                   </span>
                   <AiOutlineShoppingCart className='w-6 h-6 lg:w-7 lg:h-7' />
@@ -126,7 +126,7 @@ function Navigation() {
             ) : (
               ""
             )}
-</>
+</div>
   )
   };
 

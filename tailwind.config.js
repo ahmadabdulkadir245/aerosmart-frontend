@@ -12,9 +12,20 @@ module.exports = {
           light: "#232f3e",
           DEFAULT: "#131921",
         },
+        keyframes: {
+          pingOnce: {
+            "50%": {transform: "scale(2)"},
+            100: {transform: "scale(1)"}
+          }
+        },
+        animation: {
+          pingOnce: "pingOnce 0.5s cubic-bezier(0, 0, 0.2, 1)",
+        }
       },
     },
     screens: {
+     tiny : "325px",
+      xs: "380px",
       sm: "640px",
       md: "768px",
       lg: "1024px",
@@ -261,6 +272,7 @@ module.exports = {
     fontFamily: {
       calligraffitti: ["Calligraffitti", "cursive"],
       changa: ["Changa", " sans-serif"],
+      poppins: ["Poppins", "sans-serif"],
       eduvc: ["Edu VIC WA NT Beginner", "cursive"],
       lato: ["Lato", " sans-serif"],
       merriweather: ["Merriweather", "serif"],
@@ -566,6 +578,7 @@ module.exports = {
     maxWidth: (theme, { breakpoints }) => ({
       none: "none",
       0: "0rem",
+      tiny: "10rem",
       xs: "20rem",
       sm: "24rem",
       md: "28rem",
