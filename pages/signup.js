@@ -134,7 +134,7 @@ function Signup() {
     </div> */}
 
 
-      <h2 className="sm:mt-24 text-2xl text-center font-bold mb-2  tiny:mt-0">Sign Up</h2>
+      <h2 className="sm:mt-24 text-2xl text-center font-bold mb-2  ">Sign Up</h2>
 
       <form onSubmit={signupHandler}>
       <input
