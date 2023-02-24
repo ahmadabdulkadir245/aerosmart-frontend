@@ -32,11 +32,11 @@ const Products = ({ id, title, price, description, category, image }) => {
               <p className='absolute top-2 right-2 text-xs italic text-gray-400 z-20'>
                 {category}
               </p>
-              <div className='relative w-full h-[160px]  overflow-hidden rounded-t-md'>
+              <div className='relative w-full h-[140px]  overflow-hidden rounded-t-md'>
                 <Image src={image} alt={image} fill />
               </div>
           </Link>
-          <h4 className='my-1 lg:my-3  px-2 capitalize '>{title}</h4>
+          <h4 className='my-1 lg:my-3  px-2 capitalize text-sm font-semibold '>{title}</h4>
           <div className='flex  px-2'>
             {/* {Array(rating)
               .fill(1)
@@ -44,9 +44,9 @@ const Products = ({ id, title, price, description, category, image }) => {
                 <StarIcon key={id} className='h-4 text-yellow-500' />
               ))} */}
           </div>
-          <p className='text-sm font-rajdhani my-[2px]  md:my-2 truncate  px-2'>{description}</p>
-          <div className=' text-sm font-play px-2 text-gray-600 flex space-x-1'>
-            <TbCurrencyNaira  className="w-5 h-5"/>{price}
+          <p className='text-sm font-play  md:my-2 line-clamp-2  px-2 text-xs  font-semibold'>{description} this text is add to increase the description text amount</p>
+          <div className=' text-sm font-play px-2 text-gray-500 flex items-center space-x-1 text-xs font-semibold mt-[2px]'>
+            <TbCurrencyNaira  className="w-4 h-4"/>{price.toLocaleString()}
           </div>
           {/* {hasPrime && (
             <div className='flex items-center space-x-3 -mt-5 mb-2 px-2 '>
@@ -54,7 +54,7 @@ const Products = ({ id, title, price, description, category, image }) => {
             </div>
           )} */}
           <button
-            className=' mt-2 mx-auto bg-yellow-400 p-2 w-[90%] text-white rounded-md  uppercase mb-2 text-sm'
+            className=' mt-1 mx-auto bg-yellow-400 p-2 w-[90%] text-white rounded-md  uppercase mb-2 text-xs'
             onClick={addProductToBasket}
           >
             Add To Cart

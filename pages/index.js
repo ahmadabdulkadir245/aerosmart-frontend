@@ -10,12 +10,12 @@ import { useEffect } from 'react'
 
 export default function Home() {
   const router = useRouter()
-    useEffect(() => {
-    let token = sessionStorage.getItem("Token");
-    if (!token) {
-      router.push("/login");
-    }
-  }, );
+  //   useEffect(() => {
+  //   let token = sessionStorage.getItem("Token");
+  //   if (!token) {
+  //     router.push("/login");
+  //   }
+  // }, );
   return (
     <div>
       <Head>

@@ -1077,6 +1077,7 @@ module.exports = {
     zIndex: ["responsive", "focus-within", "focus"],
   },
   plugins: [
-  require('@tailwindcss/line-clamp')
+  require('@tailwindcss/line-clamp'),
+  require('tailwind-scrollbar-hide')
   ],
 };
