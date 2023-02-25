@@ -13,7 +13,7 @@ const Products = ({ id, title, price, description, category, image }) => {
       }, 500);
     }, []);
     const dispatch = useDispatch();
-    const addProductToBasket = () => {
+    const addProductToCart = () => {
       const Product = {
         id,
         title,
@@ -55,7 +55,7 @@ const Products = ({ id, title, price, description, category, image }) => {
           )} */}
           <button
             className=' mt-1 mx-auto bg-yellow-400 p-2 w-[90%] text-white rounded-md  uppercase mb-2 text-xs'
-            onClick={addProductToBasket}
+            onClick={addProductToCart}
           >
             Add To Cart
           </button>

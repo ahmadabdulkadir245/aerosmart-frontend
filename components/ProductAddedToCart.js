@@ -25,7 +25,7 @@ function ProductAddedToCart({ id, title, productQty, description, image }) {
 
 
   return (
-    <div className='grid grid-cols-3  px-3 gap-4 my-4'>
+    <div className='grid grid-cols-3  px-3 gap-4 my-5'>
       
       <div className='relative w-full h-[120px] text-gray-600 '>
         <Image src={image} alt={title} fill />
@@ -33,13 +33,6 @@ function ProductAddedToCart({ id, title, productQty, description, image }) {
       <div className='col-span-2 '>
         <p className='truncate uppercase text-sm'>{title}</p>
       <p className="lowercase leading-4 line-clamp-3 text-xs">{description} the description is too short so to make sure its up to two line</p>
-        {/* <div className='flex  pr-3'>
-          {Array(5)
-            .fill(1)
-            .map((_, i) => (
-            <AiFillStar key={_} className="text-yellow-400 w-5 h-5"/>
-            ))}
-        </div> */}
               <div className="flex-nowrap flex justify-between mt-[19px]">
         <div className=' flex justify-between items-center w-32'>
         <div

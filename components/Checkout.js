@@ -2,10 +2,16 @@ import Image from 'next/image'
 import React from 'react'
 import { MdClear } from 'react-icons/md'
 import { TbCurrencyNaira } from 'react-icons/tb'
+import { useDispatch } from 'react-redux';
+import { removeFromCart } from '../slices/cartSlice';
 
-function Checkout({ id, title, price, productQty, description, image, cartTotal }) {
+function Checkout({ id, title, price, key, productQty, image, cartTotal }) {
+  const dispatch = useDispatch();
+  const removeItemFromOrders = () => {
+    dispatch(removeFromCart({id}))
+  }
   return (
-    <div className='px-3 '>
+    <div className='px-3 ' key={key}>
         <div className=''>
            
                 <div className='bg-white py-2 px-3'>
@@ -16,12 +22,12 @@ function Checkout({ id, title, price, productQty, description, image, cartTotal 
                 <div className=' col-span-2'>
                         <h3 className='uppercase text-sm font-changa'>{title}</h3>
                         <p className='text-xs line-clamp-2 leading-3'>this isthe description and it takes up to 2 lines</p>
-                        <p className='text-xs'>Qauntity: 3</p>
+                        <p className='text-xs'>Qauntity: {productQty}</p>
                         <p className='text-xs'>Total: </p>
                 </div>
                 <div className='col-span-1 '>
-                <MdClear className="absolute right-2 w-6 h-6 text-gray-500 "/>
-                <div className='flex items-center absolute right-2 bottom-1'>  <TbCurrencyNaira  className="w-4 h-4"/>
+                <MdClear className="absolute right-2 w-6 h-6 text-gray-500 " onClick={removeItemFromOrders}/>
+                <div className='flex items-center absolute right-2 bottom-1'>  <TbCurrencyNaira  className="w-4 h-4 text-gray-500"/>
                 <p className='text-xs'>{price.toLocaleString()}</p></div>
                 </div>
                 </div>

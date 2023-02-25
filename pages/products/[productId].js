@@ -1,66 +1,89 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import {AiFillStar} from "react-icons/ai"
+import { CiShoppingCart } from "react-icons/ci";
+import { useDispatch } from "react-redux";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 import { GRAPHQL_URL } from '../../lib/constants'
+import { addToCart } from "../../slices/cartSlice";
 
 let prodId
 function Product({product}) {
   const router = useRouter()
   prodId = router.query.productId
+  const dispatch = useDispatch()
+  const addProductToCart = (checkout) => {
+    const Product = {
+    id:  product.prodId,
+      title: product.title,
+     price: product. price,
+      description: product.description,
+      image: product.imageUrl,
+    };
+    console.log(Product)
+    dispatch(addToCart(Product));
+
+    if(checkout == true) {
+      router.push('/checkout')
+    }
+  }
 
   return (
-    <div className="px-3 mt-5 text-gray-500">
-      <div className="relative   w-full h-[350px]  overflow-hidden rounded-t-md">
+    <>
+    <Header />
+    <div className="px-3 pt-5 text-gray-500">
+      <div className="relative   w-full h-[250px]  overflow-hidden rounded-md ">
         <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
       </div>
 
       <div className="flex items-center justify-between mt-5">
         <div className="pt-1">
-          <h3 className="text-2xl font-titilliumWeb capitalize font-semibold">{product.title}</h3>
+          <h3 className=" font-titilliumWeb  font-semibold uppercase text-sm">{product.title}</h3>
         </div>
-        <span className="bg-yellow-100 flex items-center space-x-3 p-1 font-changa  rounded-md">
-              <AiFillStar className="text-yellow-400 w-7 h-7"/>
-              <p className="text-yellow-400 text-xl">4.5</p>
+        <span className="bg-yellow-100 flex items-center space-x-1 p-1 font-changa  rounded-md">
+              <AiFillStar className="text-yellow-400 w-4 h-4"/>
+              <p className="text-yellow-400 text-sm">4.5</p>
         </span>
       </div>
 
       <div>
-        <h2 className="mt-3 mb-2 capitalize text-lg underline tracking-wide">description</h2>
-        <p>{product.description}</p>
+        <h2 className="mt-1 capitalize text-sm underline tracking-wider ">description</h2>
+        <p className="text-xs">{product.description} this is text is added to make sure that the description text is up to two lines and if it is more that 4 lines you press the more button to see all text. and a show less link will be added to reduce the list of all descriptions</p>
       </div>
 
-      <div className="flex items-center space-x-3 my-5">
-      <div className="relative   w-[100px] h-[100px]  overflow-hidden rounded-md">
+      <div className="flex items-center space-x-3 my-3">
+      <div className="relative   w-[80px] h-[60px]  overflow-hidden rounded-md">
         <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
       </div>
-      <div className="relative   w-[100px] h-[100px]  overflow-hidden rounded-md">
+      <div className="relative   w-[80px] h-[60px]  overflow-hidden rounded-md">
         <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
       </div>
-      <div className="relative   w-[100px] h-[100px]  overflow-hidden rounded-md">
+      <div className="relative   w-[80px] h-[60px]  overflow-hidden rounded-md">
         <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
       </div>
       </div>
 
-      <div className="flex items-center justify-between my-6">
+        <h3 >Colors</h3>
+      <div className="flex items-center justify-between my-3">
           <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-full bg-white shadow-md"></div>
-          <div className="w-10 h-10 rounded-full bg-yellow-400 shadow-md"></div>
-          <div className="w-10 h-10 rounded-full bg-blue-500 shadow-md"></div>
-          <div className="w-10 h-10 rounded-full bg-green-400 shadow-md"></div>
-          </div>
-
-          <div className=" bg-gray-300  w-22 lg:w-24 py-[1px] px-1  rounded-xl text-gray-800">
-            <div className="flex items-center justify-center space-x-4 ">
-              <span className="bg-gray-100 w-5 h-5 flex items-center justify-center p-[12px] rounded-full cursor-pointer text-xl">-</span>
-              <p className="text-xl ">1</p>
-              <span className="bg-gray-100 w-5 h-5 flex items-center justify-center p-[12px] rounded-full cursor-pointer text-xl">+</span>
-            </div>
+          <div className="w-8 h-8 rounded-full bg-white shadow-sm"></div>
+          <div className="w-8 h-8 rounded-full bg-yellow-400 shadow-md"></div>
+          <div className="w-8 h-8 rounded-full bg-blue-500 shadow-md"></div>
+          <div className="w-8 h-8 rounded-full bg-green-400 shadow-md"></div>
           </div>
          </div>
 
-          <botton className=" bg-yellow-400 w-full rounded-lg py-4 text-xl text-white capitalize px-8 my-6  flex mx-auto text-center justify-center">  add to cart | N{product.price}</botton>
+          <div className="flex justify-between">
+         <div className="capitalize w-[15%] h-[48px] rounded-md border-[1px] border-gray-700 flex items-center justify-center mt-4 m-auto" onClick={addProductToCart}>
+          <CiShoppingCart className="w-7 h-7 text-gray-700"/>
+         </div>
+         <button className="capitalize w-[80%] h-[48px] rounded-md text-white border-[1px] border-yellow-500 bg-yellow-500 block mt-4 m-auto" onClick={addProductToCart.bind(this, true)}>Checkout</button>
+          </div>
 
     </div>
+    <Footer/>
+    </>
   )
 }
 

@@ -13,7 +13,6 @@ function CheckoutPage() {
   const orderItems = useSelector(selectedOrderItems);
   const orderId = orderItems.map((order) => order)
 
-  console.log(`this is the orders id ${orderId}`)
 
   const cartItems = useSelector(selectedcartItems);
   const cartTotal = useSelector(selectTotal)
@@ -32,8 +31,8 @@ function CheckoutPage() {
   return (
     <div className="">
       <Header />
-      <h2 className='uppercase text-gray-700 mb-2 px-3 my-10'>
-                1. review your order (2 items)
+      <h2 className='uppercase text-gray-700 pb-2 px-3 py-4'>
+                1. review your order ({cartItems.length} {cartItems.length < 2 ? 'item' : 'items'})
             </h2>
             {cartItems.map(
           ({ product, qty}) => (
@@ -55,7 +54,9 @@ function CheckoutPage() {
           <div className='flex items-center text-s'><TbCurrencyNaira  className="w-4 h-5"/><p className='font-bold text-xs'>{cartTotal.toLocaleString()}</p></div>
         </div>
         </div>
-        
+
+            <div className='bg-gray-600 w-[98%] h-2 rounded-sm m-auto'></div>
+
       <div className='px-3'>
         <h2 className='uppercase text-gray-700 my-2'>2. delivery address</h2>
         <p className='text-xs capitalize'>all fields required</p>
@@ -125,7 +126,76 @@ function CheckoutPage() {
         
       </div>
 
-      {/* <Footer/> */}
+
+            {/* Pament section */}
+            <div className='bg-gray-600 w-[98%] h-2 rounded-sm m-auto'></div>
+            <h2 className='uppercase text-gray-700 pb-2 px-3 py-4'>
+                3. pament 
+            </h2>
+            
+
+            <div className='px-3'>
+            <input
+                type='number'
+                className='border-[1px] lg:border-[1px] rounded-lg md:rounded-full  border-gray-500 outline-none px-4 py-[16px] w-full  m-auto flex my-5 lg:my-5'
+                placeholder='0000 0000 0000 0000'
+                required
+                // onChange={passwordInputHandler}
+              />
+ <div className="flex justify-between my-5">
+ <input
+                type='number'
+                className='border-[1px] lg:border-[1px] rounded-lg md:rounded-full  border-gray-500 outline-none px-4 py-[16px] w-[50%]  flex  lg:my-2'
+                placeholder='MM/YY'
+                required
+                // onChange={passwordInputHandler}
+              />
+   <input
+                type='text'
+                className='border-[1px] lg:border-[1px] rounded-lg md:rounded-full  border-gray-500 outline-none px-4 py-[16px] w-[40%]  flex  lg:my-2'
+                placeholder='CVV '
+                required
+                // onChange={passwordInputHandler}
+              />      
+              </div>
+            </div>
+
+            {/* complete order */}
+            <div className='bg-gray-600 w-[98%] h-2 rounded-sm m-auto'></div>
+
+            <h2 className='uppercase text-gray-700 my-2 px-3'>order summary</h2>
+            <div className='my-4 p-2 bg-white text-gray-800'>
+              <div className='flex justify-between px-2'>
+                <p>Subtotal:</p>
+                <p className=' flex items-center'><TbCurrencyNaira  className="w-5 h-5 "/>{cartTotal.toLocaleString()}</p>
+              </div>
+              <div className='flex justify-between px-2 '>
+                <p className='py-1'>Delivery Fee:</p>
+                <p className='py-1 flex items-center'><TbCurrencyNaira  className="w-5 h-5 "/>{(1000).toLocaleString()}</p>
+              </div>
+                <div className='flex justify-between bg-gray-400 p-2 text-black'>
+                      <p className='uppercase '>
+                        order total
+                      </p>
+                        <p className=' flex items-center'>
+                        <TbCurrencyNaira  className="w-5 h-5 "/>
+                          {(cartTotal + 1000).toLocaleString()}
+                        </p>
+                </div>
+                <div className='my-4 px-2'>
+                  <div className='flex space-x-4'>
+                        <input type="checkbox"/> 
+                        <p className='text-xs'>Email me about new products, deals and discounts.</p>
+                  </div>
+                  
+                  <button className="capitalize w-[90%] h-[48px] rounded-md text-white bg-yellow-500 block mt-4 m-auto">Pay Now</button>
+
+                </div>
+            </div >
+            
+
+
+      <Footer/>
     </div>
   )
 }
