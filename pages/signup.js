@@ -91,7 +91,7 @@ function Signup() {
               className='border-[1px] lg:border-[1px] rounded-lg md:rounded-full  border-gray-500] outline-none px-4 py-[16px] w-[90%]  m-auto flex my-5 lg:my-5'
               placeholder='Username '
               required
-              onChange={emailInputHandler}
+              // onChange={emailInputHandler}
             />
       <input
               type='email'
@@ -121,7 +121,7 @@ function Signup() {
          <p  className="text-[#2F89FC] capitalize text-center font-poppins">forgot password?</p>
         </Link>
 
-        <button className="capitalize w-[90%] h-[48px] rounded-md text-white bg-[#0E64D2] block mt-4 m-auto">login</button>
+        <button className="capitalize w-[90%] h-[48px] rounded-md text-white bg-[#0E64D2] block mt-4 m-auto">Signup</button>
 
         <p className="font-poppins text-center mt-4">Dont have an account?
         <Link href="/login" className="font-poppins text-[#2F89FC] ml-4">Login</Link>
@@ -135,13 +135,13 @@ function Signup() {
 
         <button className=" w-[90%] h-[48px] rounded-md text-white bg-[#1877F2]  mt-4 m-auto flex items-center justify-between px-2 ">
         <RiFacebookFill className="w-7 h-7 "/>
-          Login with Facebook
+          Signup with Facebook
           <div></div>
           </button>
 
         <button className=" w-[90%] h-[48px] rounded-md text-gray-500 border-[1px] bg-white mt-4 m-auto flex items-center justify-between px-2 "   onClick={signInGoogle}>
         <FcGoogle className="w-7 h-7 "/>
-          Login with Google
+        Signup with Google
           <div></div>
           </button>
 

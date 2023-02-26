@@ -38,7 +38,7 @@ function CheckoutPage() {
     <div className="">
       <Header />
       <h2 className='uppercase text-gray-700 pb-2 px-3 py-4'>
-                1. review your order ({cartItems.length} {cartItems.length < 2 ? 'item' : 'items'})
+                1. review your order ({orderItems.length} {orderItems.length < 2 ? 'item' : 'items'})
             </h2>
             {orderItems.map(
           ({ product, qty}) => (
