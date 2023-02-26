@@ -4,11 +4,13 @@ import { MdClear } from 'react-icons/md'
 import { TbCurrencyNaira } from 'react-icons/tb'
 import { useDispatch } from 'react-redux';
 import { removeFromCart } from '../slices/cartSlice';
+import { removeFromOrder } from '../slices/orderSlice';
 
 function Checkout({ id, title, price, key, productQty, image, cartTotal }) {
+  console.log(  `this is the ID of the product to be removed ${id}`)
   const dispatch = useDispatch();
   const removeItemFromOrders = () => {
-    dispatch(removeFromCart({id}))
+    dispatch(removeFromOrder({id}))
   }
   return (
     <div className='px-3 ' key={key}>
@@ -28,7 +30,7 @@ function Checkout({ id, title, price, key, productQty, image, cartTotal }) {
                 <div className='col-span-1 '>
                 <MdClear className="absolute right-2 w-6 h-6 text-gray-500 " onClick={removeItemFromOrders}/>
                 <div className='flex items-center absolute right-2 bottom-1'>  <TbCurrencyNaira  className="w-4 h-4 text-gray-500"/>
-                <p className='text-xs'>{price.toLocaleString()}</p></div>
+                <p className='text-xs'>{(price * productQty).toLocaleString()}</p></div>
                 </div>
                 </div>
                 <div className='w-full h-[1px] bg-gray-500 m-auto mt-2'></div>

@@ -57,7 +57,7 @@ function Navigation() {
       </div>
 
      {/* search for Desktop */}
-              <div className='hidden md:flex items-center  h-10 rounded-md max-w-3xl flex-grow cursor-pointer bg-yellow-400  hover:bg-[#f7b32b] transition-all duration-500 linear'>
+              <div className='hidden lg:flex items-center  h-10 rounded-md max-w-3xl flex-grow cursor-pointer bg-yellow-400  hover:bg-[#f7b32b] transition-all duration-500 linear'>
                 <input
                   type='text'
                   className='py-5 px-4 h-full w-6 flex-grow  flex-shrink rounded-l-sm focus:outline-none bg-gray-300 font-play text-gray-700'
@@ -72,13 +72,13 @@ function Navigation() {
                  <div className='flex text-gray-500 text-xs  space-x-5 lg:space-x-12  whitespace-nowrap px-4 lg:px-'>
                 <div className='flex space-x space-x-6 items-center'>
                   <BiSearchAlt
-                    className={`  md:hidden w-6 h-6 lg:w-7 lg:h-7 ${showSearch ? 'hidden': ''}`}
+                    className={`  lg:hidden w-6 h-6 lg:w-7 lg:h-7 ${showSearch ? 'hidden': ''}`}
                 onClick={showSearchHandeler}
                   />
                   <Link href='/login'>
                      <div className='hover:text-[#f7b32b] transition-all duration-500 linear'>
                         <RiUser3Line className='w-6 h-6 lg:w-7 lg:h-5 ' />
-                     <p className='hidden sm:inline font-semiold md:text-xs font-titilliumWeb link'>
+                     <p className='hidden lg:inline font-semiold md:text-xs font-titilliumWeb link'>
                     Sign In
                   </p>
                   </div>
@@ -93,7 +93,7 @@ function Navigation() {
                     {productInCart.length}
                   </span>
                   <AiOutlineShoppingCart className='w-6 h-6 lg:w-7 lg:h-7' />
-                  <p className='hidden sm:inline font-semibold md:text-sm font-titilliumWeb'>
+                  <p className='hidden lg:inline font-semibold md:text-sm font-titilliumWeb'>
                     Cart
                   </p>
                 </div>
@@ -104,7 +104,7 @@ function Navigation() {
               {/* mobile search bar */}
                  {/* search for mobile */}
             {showSearch ? (
-              <div className='md:hidden bg-gray-50 pt-2 pb-4 px-[10px] -mt-3 shadow-lg'>
+              <div className='lg:hidden bg-gray-50 pt-2 pb-4 px-[10px] -mt-3 shadow-lg'>
                 <div className='flex items-center m-auto h-12 rounded-md flex-grow cursor-pointer bg-yellow-400  hover:bg-yellow-400'>
                   <input
                     type='text'

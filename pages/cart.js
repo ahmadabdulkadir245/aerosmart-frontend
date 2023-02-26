@@ -2,7 +2,7 @@ import Head from "next/head"
 import ProductAddedToCart from "../components/ProductAddedToCart";
 import Header from "../components/Header";
 import { useSelector, useDispatch } from "react-redux";
-import { selectedcartItems, selectTotal } from "../slices/cartSlice";
+import { emptyCart, selectedcartItems, selectTotal } from "../slices/cartSlice";
 import {TbCurrencyNaira} from "react-icons/tb"
 import { useRouter } from "next/navigation";
 import { addToOrder } from "../slices/orderSlice";
@@ -15,9 +15,11 @@ function Cart() {
   const cartItems = useSelector(selectedcartItems);
   const cartTotal = useSelector(selectTotal)
   const checkoutHandler = () => {
-    
-    dispatch(addToOrder(JSON.stringify(cartItems)))
+    dispatch(addToOrder(cartItems))
     router.push('/checkout')
+    setTimeout(() => {
+      dispatch(emptyCart())
+    }, 1000);
   }
   if (cartItems.length === 0) {
     return (
@@ -72,13 +74,9 @@ function Cart() {
         )}
       </div>
       <div className="fixed left-0 bottom-0 px-3 shadow-xl w-full  text-lg bg-white z-10 pt-2 overflow-hiddentext-gray-500">
-              <button
-            className=' mt-1 mb-2 mx-auto bg-yellow-400 py-2  w-full text-white rounded-md  capitalize  text-sm tracking-wider font-light flex justify-center items-center'
-            onClick={checkoutHandler}
-          >
-              
-          buy now |   <TbCurrencyNaira  className="w-6 h-7"/>{cartTotal.toLocaleString()}
-          </button>
+      <button className="capitalize w-[90%] h-[48px] rounded-md text-white  text-sm bg-yellow-500  mb-1 flex items-center justify-center m-auto" 
+      onClick={checkoutHandler}>BuY Now | <TbCurrencyNaira  className="w-5 h-5"/>{cartTotal.toLocaleString()}
+      </button>
           </div>
 
     </div>

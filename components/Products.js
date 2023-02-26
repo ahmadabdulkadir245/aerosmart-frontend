@@ -44,8 +44,8 @@ const Products = ({ id, title, price, description, category, image }) => {
                 <StarIcon key={id} className='h-4 text-yellow-500' />
               ))} */}
           </div>
-          <p className='text-sm font-play  md:my-2 line-clamp-2  px-2 text-xs  font-semibold'>{description} this text is add to increase the description text amount</p>
-          <div className=' text-sm font-play px-2 text-gray-500 flex items-center space-x-1 text-xs font-semibold mt-[2px]'>
+          <p className=' font-play  md:my-2 line-clamp-2  px-2 text-xs  font-semibold'>{description} this text is add to increase the description text amount</p>
+          <div className='  font-play px-2 text-gray-500 flex items-center space-x-1 text-xs font-semibold mt-[2px]'>
             <TbCurrencyNaira  className="w-4 h-4"/>{price.toLocaleString()}
           </div>
           {/* {hasPrime && (

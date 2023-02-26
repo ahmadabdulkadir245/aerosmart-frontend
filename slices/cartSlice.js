@@ -42,10 +42,14 @@ export const cartSlice = createSlice({
         state.cartItems.filter(cartItem => cartItem.product.id !== action.payload.id)
       }
        },
+    
+    emptyCart: (state, action) => {
+      state.cartItems = []
+    }
   },
 });
 
-export const { addToCart, minusFromCart , removeFromCart} = cartSlice.actions;
+export const { addToCart, minusFromCart , removeFromCart, emptyCart} = cartSlice.actions;
 // selectors this is how to pull information from the global scopre
 
 export const totalCartItemSelector = createSelector(cartItems => 

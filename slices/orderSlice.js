@@ -10,7 +10,7 @@ export const orderSlice = createSlice({
   initialState,
   reducers: {
     addToOrder: (state, action) => {
-      state.orderItems.push(action.payload)
+      state.orderItems = action.payload
     },
     removeFromOrder: (state, action) => {
       const index = state.orderItems.findIndex(orderItem => orderItem.product.id == action.payload.id )

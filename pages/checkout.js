@@ -4,16 +4,14 @@ import Footer from '../components/Footer'
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { selectedOrderItems } from '../slices/orderSlice';
+import { selectedOrderItems, selectOrderTotal } from '../slices/orderSlice';
 import { selectedcartItems, selectTotal } from '../slices/cartSlice';
 import { TbCurrencyNaira } from 'react-icons/tb';
 
 function CheckoutPage() {
   const router = useRouter()
   const orderItems = useSelector(selectedOrderItems);
-  const orderId = orderItems.map((order) => order)
-
-
+  const orderTotal = useSelector(selectOrderTotal)
   const cartItems = useSelector(selectedcartItems);
   const cartTotal = useSelector(selectTotal)
 
@@ -28,13 +26,21 @@ function CheckoutPage() {
     postalCode: '',
     state: '',
   })
+    {  if (orderItems.length === 0) {
+      return (
+ <div>
+       <Header />
+<h3 className='text-xl text-center pt-10 text-gray-600'>No Orders Made</h3>
+ </div>
+  )
+      }}
   return (
     <div className="">
       <Header />
       <h2 className='uppercase text-gray-700 pb-2 px-3 py-4'>
                 1. review your order ({cartItems.length} {cartItems.length < 2 ? 'item' : 'items'})
             </h2>
-            {cartItems.map(
+            {orderItems.map(
           ({ product, qty}) => (
             <Checkout
               key={product.id}
@@ -51,7 +57,7 @@ function CheckoutPage() {
         <div className='px-3'>
         <div className='flex justify-between bg-gray-200 shodow-lg  p-2 text-gray-700 my-4'>
           <div className='capitalize font-bold'>subtotal:</div>
-          <div className='flex items-center text-s'><TbCurrencyNaira  className="w-4 h-5"/><p className='font-bold text-xs'>{cartTotal.toLocaleString()}</p></div>
+          <div className='flex items-center text-s'><TbCurrencyNaira  className="w-4 h-5"/><p className='font-bold text-xs'>{orderTotal.toLocaleString()}</p></div>
         </div>
         </div>
 
@@ -167,7 +173,7 @@ function CheckoutPage() {
             <div className='my-4 p-2 bg-white text-gray-800'>
               <div className='flex justify-between px-2'>
                 <p>Subtotal:</p>
-                <p className=' flex items-center'><TbCurrencyNaira  className="w-5 h-5 "/>{cartTotal.toLocaleString()}</p>
+                <p className=' flex items-center'><TbCurrencyNaira  className="w-5 h-5 "/>{orderTotal.toLocaleString()}</p>
               </div>
               <div className='flex justify-between px-2 '>
                 <p className='py-1'>Delivery Fee:</p>

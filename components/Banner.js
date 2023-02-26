@@ -22,7 +22,6 @@ function Banner() {
     <div className='w-full xl:w-[1024px] flex justify-center m-auto  mt-2 transition-all duration-700 ease-out'>
     {loading ?
     <Swiper
-    //   slidesPerView={1}
       spaceBetween={30}
       loop={true}
       pagination={{
@@ -35,8 +34,8 @@ function Banner() {
         {banners.map(banner => (
         <SwiperSlide key={banner.id} >
             <div className='relative h-[35vh] w-[95%] m-auto rounded-md'>
-        <img src={banner.image} className='w-full h-full rounded-md object-cover ' />
-
+        <img src={banner.image} alt={banner.title} className='w-full h-full rounded-md object-cover' fill />
+        {/* <Image src={banner.image} alt={banner.title} fill /> */}
             </div>
       </SwiperSlide>
         ))}
@@ -45,14 +44,14 @@ function Banner() {
   : 
   <div className='relative h-[35vh] w-[95%] m-auto rounded-md bg-gray-400 overflow-hidden animate-pulse transition-all duration-500 linear'>
   <div className='absolute h-full w-10  bg-white pulse overflow-hidden z-[40]'></div>
-          <div className="flex  justify-center  space-x-3 mt-[25vh] m-auto bottom-[10px] ">
+          <div className="relative top-[90%] flex  justify-center  space-x-3  bottom-5 ">
             <p className="w-[8px] h-[8px]  rounded-full bg-gray-500"></p>
             <p className="w-[8px] h-[8px]  rounded-full bg-gray-500"></p>
             <p className="w-[8px] h-[8px]  rounded-full bg-gray-500"></p>
             <p className="w-[8px] h-[8px]  rounded-full bg-gray-500"></p>
             <p className="w-[8px] h-[8px]  rounded-full bg-gray-500"></p>
           </div>
-      </div> 
+            </div>
   }
   </div>
   )

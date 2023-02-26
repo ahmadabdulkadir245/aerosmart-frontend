@@ -37,6 +37,18 @@ function Product({product}) {
         <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
       </div>
 
+      <div className="flex items-center space-x-3 my-3">
+      <div className="relative   w-[80px] h-[60px]  overflow-hidden rounded-md">
+        <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
+      </div>
+      <div className="relative   w-[80px] h-[60px]  overflow-hidden rounded-md">
+        <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
+      </div>
+      <div className="relative   w-[80px] h-[60px]  overflow-hidden rounded-md">
+        <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
+      </div>
+      </div>
+
       <div className="flex items-center justify-between mt-5">
         <div className="pt-1">
           <h3 className=" font-titilliumWeb  font-semibold uppercase text-sm">{product.title}</h3>
@@ -50,18 +62,6 @@ function Product({product}) {
       <div>
         <h2 className="mt-1 capitalize text-sm underline tracking-wider ">description</h2>
         <p className="text-xs">{product.description} this is text is added to make sure that the description text is up to two lines and if it is more that 4 lines you press the more button to see all text. and a show less link will be added to reduce the list of all descriptions</p>
-      </div>
-
-      <div className="flex items-center space-x-3 my-3">
-      <div className="relative   w-[80px] h-[60px]  overflow-hidden rounded-md">
-        <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
-      </div>
-      <div className="relative   w-[80px] h-[60px]  overflow-hidden rounded-md">
-        <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
-      </div>
-      <div className="relative   w-[80px] h-[60px]  overflow-hidden rounded-md">
-        <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
-      </div>
       </div>
 
         <h3 >Colors</h3>
