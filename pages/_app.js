@@ -32,7 +32,7 @@ const titilliumWeb = Titillium_Web({
 
 function MyApp({ Component, pageProps }) {
   return (
-    <main className={`${play.variable} ${changa.variable} ${poppins.variable}  ${titilliumWeb.variable}`}>
+    <main className={`${play.variable} ${changa.variable} ${poppins.variable}  ${titilliumWeb.variable} font-primary`}>
     <Provider store={store}>
     <RecoilRoot>
       {/* <Header /> */}

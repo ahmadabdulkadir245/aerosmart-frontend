@@ -106,7 +106,7 @@ export const getServerSideProps = async (context) => {
     }
     `
   };
-   const result = await fetch("http://localhost:8000/graphql", {
+   const result = await fetch(GRAPHQL_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
