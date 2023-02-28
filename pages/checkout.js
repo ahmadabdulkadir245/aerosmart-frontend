@@ -5,16 +5,12 @@ import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { selectedOrderItems, selectOrderTotal } from '../slices/orderSlice';
-import { selectedcartItems, selectTotal } from '../slices/cartSlice';
 import { TbCurrencyNaira } from 'react-icons/tb';
 
 function CheckoutPage() {
   const router = useRouter()
   const orderItems = useSelector(selectedOrderItems);
   const orderTotal = useSelector(selectOrderTotal)
-  const cartItems = useSelector(selectedcartItems);
-  const cartTotal = useSelector(selectTotal)
-
 
   const [orderDetails, setOrderDetails] = useState({
     email: '',
@@ -49,7 +45,7 @@ function CheckoutPage() {
               price={product.price}
               description={product.description}
               productQty={qty}
-              cartTotal={cartTotal}
+              cartTotal={orderTotal}
               image={product.image}
             />
           )
@@ -185,7 +181,7 @@ function CheckoutPage() {
                       </p>
                         <p className=' flex items-center'>
                         <TbCurrencyNaira  className="w-5 h-5 "/>
-                          {(cartTotal + 1000).toLocaleString()}
+                          {(orderTotal + 1000).toLocaleString()}
                         </p>
                 </div>
                 <div className='my-4 px-2'>

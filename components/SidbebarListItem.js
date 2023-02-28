@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import React from "react";
 
 function SidebarListItem({ Icon, title }) {
   const router = useRouter();

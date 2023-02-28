@@ -108,7 +108,7 @@ function Navigation() {
                 <div className='flex items-center m-auto h-12 rounded-md flex-grow cursor-pointer bg-yellow-400  hover:bg-yellow-400'>
                   <input
                     type='text'
-                    className='px-2 py-[24px] h-full w-6 flex-grow  flex-shrink rounded-l-md focus:outline-none bg-gray-300 font-play text-gray-700'
+                    className='px-2 py-[24px] h-full w-6 flex-grow  flex-shrink rounded-l-md focus:outline-none bg-gray-300 font-primary text-gray-700'
                     placeholder='search on Aerosmart'
                     // value={searchWord}
                     // onChange={searchHandler}

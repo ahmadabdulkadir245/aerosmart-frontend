@@ -75,7 +75,7 @@ function Footer() {
                <div className="flex items-center justify-between">
                 <div className="flex items-center">
                 <p><TfiEmail className="w-6 h-5" /></p>
-                <input type="email" required placeholder="Enter your email address" className="w-full border-b-[1px] border-gray-700 outline-none  p-1 text-gray-700" />
+                <input type="email" required placeholder="Enter your email address" className=" border-none  outline-none  p-1 text-gray-700 flex-1" />
                </div>
 
                 <div><TiArrowRight className="w-12 h-7 font-bold" /></div>

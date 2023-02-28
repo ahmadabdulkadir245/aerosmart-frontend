@@ -5,11 +5,12 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useEffect, useState } from "react";
 import {BANNERS} from '../db/banner-image'
+import Image from 'next/legacy/image'
+
 const banners = BANNERS
 
 // import required modules
 import { Pagination, Navigation, Thumbs } from "swiper";
-import Image from 'next/image';
 
 function Banner() {
   const [loading, setLoading] = useState(false);
@@ -33,9 +34,10 @@ function Banner() {
     >
         {banners.map(banner => (
         <SwiperSlide key={banner.id} >
-            <div className='relative h-[35vh] w-[95%] m-auto rounded-md'>
-        <img src={banner.image} alt={banner.title} className='w-full h-full rounded-md object-cover' fill />
-        {/* <Image src={banner.image} alt={banner.title} fill /> */}
+            <div className='relative h-[35vh] w-[95%] m-auto rounded-md overflow-hidden'>
+        {/* <img src={banner.image} alt={banner.title} className='w-full h-full rounded-md object-cover'  /> */}
+        <Image src={banner.image} alt={banner.title} width={400} height={320} priority/>
+        {/* <Image src={banner.image} alt={banner.title} layout='fill' objectFit='cover' priority/> */}
             </div>
       </SwiperSlide>
         ))}

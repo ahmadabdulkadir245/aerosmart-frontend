@@ -21,7 +21,7 @@ const ProductFeed = () => {
       }
       `
     };
-   fetch(GRAPHQL_URL, {
+   fetch("http://localhost:8000/graphql", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

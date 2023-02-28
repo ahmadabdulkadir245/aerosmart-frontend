@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.13",
+    "@next/font": "^13.2.1",
     "@reduxjs/toolkit": "^1.9.1",
     "@tailwindcss/line-clamp": "^0.4.2",
     "autoprefixer": "^10.4.13",
