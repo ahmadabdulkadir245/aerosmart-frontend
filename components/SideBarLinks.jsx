@@ -5,7 +5,6 @@ import { GiConcreteBag, GiOpeningShell, GiWoodBeam } from 'react-icons/gi'
 import SideBarLink from './SideBarLink'
 import { MdAdminPanelSettings, MdConstruction } from 'react-icons/md'
 import { BsBricks } from 'react-icons/bs'
-import Link from 'next/link'
 import { useRecoilState } from 'recoil'
 import { navState } from '../atoms/navHandler'
 import { useRouter } from 'next/navigation'
@@ -32,7 +31,7 @@ function SideBarLinks() {
 
         <SideBarLink Icon={RiUser3Line} title={'my account'} path={'/'}/>
         <SideBarLink Icon={AiOutlineShop} title={'orders'} path={'/checkout'}/>
-        <SideBarLink Icon={CiShoppingCart} title={'cart'} path={'/cart'}/>
+        {/* <SideBarLink Icon={CiShoppingCart} title={'cart'} path={'/cart'}/> */}
         <SideBarLink Icon={GiWoodBeam} title={'woods'} path={'/'}/>
         <SideBarLink Icon={MdConstruction} title={'metals'} path={'/'}/>
         <SideBarLink Icon={GiConcreteBag} title={'cement'} path={'/'}/>

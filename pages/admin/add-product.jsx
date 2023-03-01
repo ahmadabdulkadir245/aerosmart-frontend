@@ -94,7 +94,7 @@ const AddProduct = () => {
   return (
     <>
     <Header/>
-    <div classname="mt-20">
+    <div classname="">
 
           <Head>
            {/* fonts import */}

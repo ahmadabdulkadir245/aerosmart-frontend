@@ -4,15 +4,48 @@ import "swiper/swiper.min.css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useEffect, useState } from "react";
-import {BANNERS} from '../db/banner-image'
 import Image from 'next/legacy/image'
+import { GRAPHQL_URL } from "../lib/constants";
 
-const banners = BANNERS
+// const banners = BANNERS
 
 // import required modules
 import { Pagination, Navigation, Thumbs } from "swiper";
 
+
 function Banner() {
+  const [banners, setBanners] = useState([])
+  const page = 1
+  useEffect(() => {
+    const graphqlQuery = {
+      query: `
+      {
+        banners {
+          banners{
+            id
+            category
+            imageUrl
+          }
+        }
+      }
+      `
+    };
+   fetch(GRAPHQL_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(graphqlQuery)
+    })
+      .then(res => {  
+        return res.json();
+      })
+      .then(bannerData => {
+        const recievedData = bannerData.data?.banners?.banners
+        recievedData.reverse()
+        setBanners(recievedData)
+      })
+  }, [banners])
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setTimeout(() => {
@@ -36,7 +69,7 @@ function Banner() {
         <SwiperSlide key={banner.id} >
             <div className='relative h-[35vh] w-[95%] m-auto rounded-md overflow-hidden'>
         {/* <img src={banner.image} alt={banner.title} className='w-full h-full rounded-md object-cover'  /> */}
-        <Image src={banner.image} alt={banner.title} width={400} height={320} priority/>
+        <Image src={banner.imageUrl} alt={banner.catogory} width={400} height={320} priority objectFit="cover" />
         {/* <Image src={banner.image} alt={banner.title} layout='fill' objectFit='cover' priority/> */}
             </div>
       </SwiperSlide>
