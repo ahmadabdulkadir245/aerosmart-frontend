@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useRouter } from "next/router";
 import {AiFillStar} from "react-icons/ai"
 import { CiShoppingCart } from "react-icons/ci";
@@ -34,7 +34,7 @@ function Product({product}) {
     <Header />
     <div className="px-3 pt-5 text-gray-500">
       <div className="relative   w-full h-[250px]  overflow-hidden rounded-md ">
-        <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
+        <Image src={product.imageUrl} alt={product.title}  layout="fill" objectFit="cover" />
       </div>
 
       <div className="flex items-center space-x-3 my-3">

@@ -9,14 +9,16 @@ import { useState, useEffect } from 'react';
 import router from 'next/router'
 import { useRecoilState } from 'recoil';
 import { navState } from '../atoms/navHandler';
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { selectedcartItems } from '../slices/cartSlice';
+import { addSearchedWord } from '../slices/searchSlice';
 
 
 const items = []
 function Navigation() {
+  const dispatch = useDispatch();
   const [openSideBar, setOpenSideBar] = useRecoilState(navState);
-  // const [openSideBar, setOpenSideBar] = useState(false);
+  const [searchWord, setSearchWord] = useState("");
   const sideBarHandler = () => {
       setOpenSideBar(true);
     };
@@ -24,10 +26,12 @@ function Navigation() {
       setOpenSideBar(false);
     };
   const [showSearch, setShowSearch] = useState(false);
-  const showSearchHandeler = () => {
-    setShowSearch(!showSearch);
-  };
+  dispatch(addSearchedWord(searchWord));
 
+  const searchHandler = (e) => {
+    const word = e.target.value;
+    setSearchWord(word);
+  };
   const productInCart = useSelector(selectedcartItems)
 
   return (
@@ -62,7 +66,7 @@ function Navigation() {
                   type='text'
                   className='py-5 px-4 h-full w-6 flex-grow  flex-shrink rounded-l-sm focus:outline-none bg-gray-300 font-play text-gray-700'
                   placeholder='search on Aerosmart'
-                  
+                  onChange={searchHandler}
                 />
                 <BiSearchAlt className='h-12 w-12 p-3  text-gray-500 transition duration-200 ease-in' />
                 
@@ -73,7 +77,7 @@ function Navigation() {
                 <div className='flex space-x space-x-6 items-center'>
                   <BiSearchAlt
                     className={`  lg:hidden w-6 h-6 lg:w-7 lg:h-7 ${showSearch ? 'hidden': ''}`}
-                onClick={showSearchHandeler}
+                // onClick={showSearchHandeler}
                   />
                   <Link href='/login'>
                      <div className='hover:text-[#f7b32b] transition-all duration-500 linear'>
@@ -101,7 +105,6 @@ function Navigation() {
 
 
   </nav>
-              {/* mobile search bar */}
                  {/* search for mobile */}
             {showSearch ? (
               <div className='lg:hidden bg-gray-50 pt-2 pb-4 px-[10px] -mt-3 shadow-lg'>
@@ -110,8 +113,8 @@ function Navigation() {
                     type='text'
                     className='px-2 py-[24px] h-full w-6 flex-grow  flex-shrink rounded-l-md focus:outline-none bg-gray-300 font-primary text-gray-700'
                     placeholder='search on Aerosmart'
-                    // value={searchWord}
-                    // onChange={searchHandler}
+                    value={searchWord}
+                    onChange={searchHandler}
                   />
                   {/* {searchWord.length > 0 ? (
                     <MdClear
@@ -119,7 +122,9 @@ function Navigation() {
                       onClick={clearHandler}
                     />
                   ) : ( */}
-                    <BiSearchAlt className='h-12 w-12 p-3  text-gray-500 transition duration-200 ease-in' />
+                    <BiSearchAlt className='h-12 w-12 p-3  text-gray-500 transition duration-200 ease-in' 
+                  //  onClick={} 
+                    />
                   {/* )} */}
                 </div>
               </div>
