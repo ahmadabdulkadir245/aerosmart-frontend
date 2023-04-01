@@ -1,10 +1,33 @@
 import Head from "next/head"
 import { useState } from "react"
 import Header from "../../components/Header"
-import { GRAPHQL_URL } from '../../lib/constants'
-
+import dynamic from "next/dynamic";
+const QuillNoSSRWrapper = dynamic(import('react-quill'), {
+  ssr: false,
+  loading: () => <p>Loading ...</p>,
+})
+const modules = {
+  toolbar: [
+    [{ header: '1' }, { header: '2' }, { header: '3' }, { font: [] }],
+    [{ size: [] }],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    [
+      { list: 'ordered' },
+      { list: 'bullet' },
+      { indent: '-1' },
+      { indent: '+1' },
+    ],
+    ['link', 'image', 'video'],
+    ['clean'],
+  ],
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: false,
+  },
+}
 
 const AddProduct = () => {
+
   const [productData, setProductData] = useState({
     title: '',
     price: '',
@@ -12,10 +35,29 @@ const AddProduct = () => {
     imageUrl: '',
     description: ''
   })
+  const [content, setContent] = useState('');
   const [success, setSuccess] = useState(false)
+  const [image, setImage] = useState(null)
+
+  const handleFileInputChange = (event) => {
+    setImage(event.target.files[0]);
+  };
+
   const addProductHandler = (e) => {
     e.preventDefault()
+    const formData = new FormData();
+    formData.append('image', image);
 
+    fetch(process.env.NEXT_PUBLIC_PRODUCT_IMAGE_URL, {
+      method: 'POST',
+      body: formData
+    })   
+    .then(res => res.json())
+    .then(fileResData => {
+      let image
+      return  image = fileResData.image || 'undefined';
+    })
+    .then(image => {
   let graphqlQuery = {
     query: `
     mutation CreateProduct($title: String!, $price: Int!, $imageUrl: String!, $description: String!) {
@@ -30,19 +72,19 @@ const AddProduct = () => {
     variables: {
       title: productData.title,
       price:Number(productData.price),
-      imageUrl: productData.imageUrl,
-      description: productData.description,
+      imageUrl: image,
+      description: content,
     }
   };
 
- fetch('http://localhost:8000/graphql', {
+ fetch(process.env.NEXT_PUBLIC_GRAPHQL_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(graphqlQuery)
   })
-    .then(res => {  
+    .then(res => {
       return res.json();
     })
     .then(result => {
@@ -50,7 +92,6 @@ const AddProduct = () => {
         title: "",
         price: "",
         quantity: "",
-        imageUrl: "",
         description: ""
       })
 
@@ -61,23 +102,9 @@ const AddProduct = () => {
         setSuccess(false)
       }, 8000);
     })
-
-    // .then(resData => {
-    //   console.log(resData)
-    //   const products = {
-    //     title: resData.data.createProduct.title,
-    //     price: resData.data.createProduct.price,
-    //     imageUrl: resData.data.createProduct.imageUrl,
-    //     description: resData.data.createProduct.description,
-    //   };
-    //   return {
-    //     products: products,
-    //   }
-    // })
+    })
     .catch(err => console.log(err))
 }
-
-  
 
     const isUpdate = false
     const productInputHandler = (inputIdentifier, e) => {
@@ -89,12 +116,10 @@ const AddProduct = () => {
       });
     };
 
-    // console.log(productData)
-
   return (
     <>
     <Header/>
-    <div classname="">
+    <div className="">
 
           <Head>
            {/* fonts import */}
@@ -135,25 +160,27 @@ const AddProduct = () => {
         placeholder='quantity'
         name="quantity"
         required
-        // value={productData.quantity}
-        // onChange={productInputHandler.bind(this, 'quantity')}
+        value={productData.quantity}
+        onChange={productInputHandler.bind(this, 'quantity')}
       />
       </div>
 
       <input
-        type='text'
+        type='file'
         className='border-[1px] text-gray-500 lg:border-[1px] rounded-lg md:rounded-full  border-gray-600 outline-none px-6 py-3 w-[90%]  m-auto flex my-6 lg:my-8'
         placeholder='image url'
         name="imageUrl"
         required
-        value={productData.imageUrl}
-        onChange={productInputHandler.bind(this, 'imageUrl')}
+        // value={productData.imageUrl}
+        onChange={handleFileInputChange}
       />
-
-    <textarea cols={1} rows={8}  className="text-gray-500 border-[1px] lg:border-[1px] rounded-lg md:rounded-full  border-gray-600 outline-none px-6 py-3 w-[90%]  m-auto flex my-6 lg:my-8" placeholder="description" name="description"
+    <div className="  font-semibold text-gray-500 h-[300px] overflow-y-scroll shadow-md border border-gray-400 rounded-md overflow-hidden">
+      <QuillNoSSRWrapper modules={modules} onChange={setContent} theme="snow" />
+      </div>
+    {/* <textarea cols={1} rows={8}  className="text-gray-500 border-[1px] lg:border-[1px] rounded-lg md:rounded-full  border-gray-600 outline-none px-6 py-3 w-[90%]  m-auto flex my-6 lg:my-8" placeholder="description" name="description"
         onChange={productInputHandler.bind(this, 'description')}
         value={productData.description}
-    ></textarea>
+    ></textarea> */}
       {isUpdate ? (
         <button
           className='flex justify-center m-auto mt-5 lg:mt-5  bg-gray-500 w-56 rounded-full text-white  px-2 py-3 2xl:p-3 outline-none transition-all duration-300 ease-in-out hover:bg-[#ffcb05] 2xl:w-[300px] mb-20'

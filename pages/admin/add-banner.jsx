@@ -1,61 +1,78 @@
 import Head from "next/head"
 import { useState } from "react"
 import Header from "../../components/Header"
-import { GRAPHQL_URL } from '../../lib/constants'
+import axios from 'axios'
 
 
 const AddBanner = () => {
   const [bannerData, setBannerData] = useState({
     category: '',
-    imageUrl: '',
+    image: '',
   })
   const [success, setSuccess] = useState(false)
-  const addBannerHandler = (e) => {
-    e.preventDefault()
+  const [category, setCategory] = useState('')
+  const [image, setImage] = useState(null)
 
-  let graphqlQuery = {
-    query: `
-    mutation CreateBanner($category: String!, $imageUrl: String!) {
-      createBanner(bannerInput: {category: $category, imageUrl: $imageUrl}) {
-        category
-        imageUrl
-      }
-    }
-  `,
-    variables: {
-      category: bannerData.category,
-      imageUrl: bannerData.imageUrl,
-    }
+  const handleFileInputChange = (event) => {
+    setImage(event.target.files[0]);
   };
 
- fetch('http://localhost:8000/graphql', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(graphqlQuery)
-  })
-    .then(res => {  
-      return res.json();
-    })
-    .then(result => {
-        setBannerData({
-        category: "",
-        imageUrl: "",
-      })
+  const addBannerHandler = (e) => {
+    e.preventDefault()
+    const formData = new FormData();
+    formData.append('image', image);
 
-      setTimeout(() => {
-        setSuccess(true)
-      }, 1000);
-      setTimeout(() => {
-        setSuccess(false)
-      }, 8000);
+    
+    fetch(process.env.NEXT_PUBLIC_BANNER_IMAGE_URL, {
+      method: 'POST',
+      body: formData
+    })   
+    .then(res => res.json())
+    .then(fileResData => {
+      let image
+      return  image = fileResData.image || 'undefined';
+    })
+    .then(image => {
+      let graphqlQuery = {
+       query: `
+       mutation CreateBanner($category: String!, $image: String!) {
+         createBanner(bannerInput: {category: $category, image: $image}) {
+           category
+           image
+         }
+       }
+     `,
+       variables: {
+         category: category,
+         image: image,
+       }
+     };
+   
+    fetch(process.env.NEXT_PUBLIC_GRAPHQL_URL, {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json'
+       },
+       body: JSON.stringify(graphqlQuery)
+     })
+       .then(res => {  
+         return res.json();
+       })
+       .then(result => {
+         setCategory('')
+         setImage('')
+   
+         setTimeout(() => {
+           setSuccess(true)
+         }, 1000);
+         setTimeout(() => {
+           setSuccess(false)
+         }, 8000);
+       })
     })
 
     .catch(err => console.log(err))
 }
-
-  
 
     const isUpdate = false
     const bannerInputHandler = (inputIdentifier, e) => {
@@ -67,7 +84,6 @@ const AddBanner = () => {
       });
     };
 
-    // console.log(bannerData)
 
   return (
     <>
@@ -94,18 +110,18 @@ const AddBanner = () => {
         placeholder='Banner category'
         required
         name="category"
-        value={bannerData.category}
-        onChange={bannerInputHandler.bind(this, 'category')}
+        value={category}
+        onChange={e => setCategory(e.target.value)}
       />
-     
+
       <input
-        type='text'
+        type='file'
         className='border-[1px] text-gray-500 lg:border-[1px] rounded-lg md:rounded-full  border-gray-600 outline-none px-6 py-3 w-[90%]  m-auto flex my-6 lg:my-8'
         placeholder='Image url'
-        name="imageUrl"
+        name="image"
         required
-        value={bannerData.imageUrl}
-        onChange={bannerInputHandler.bind(this, 'imageUrl')}
+        // value={imageFile}
+        onChange={handleFileInputChange}
       />
 
     

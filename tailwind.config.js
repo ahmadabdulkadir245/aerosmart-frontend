@@ -583,6 +583,7 @@ module.exports = {
     }),
     minHeight: {
       0: "0px",
+      content: '500px',
       full: "100%",
       screen: "100vh",
     },
@@ -1062,6 +1063,7 @@ module.exports = {
   },
   plugins: [
   require('@tailwindcss/line-clamp'),
-  require('tailwind-scrollbar-hide')
+  require('tailwind-scrollbar-hide'),
+require('@tailwindcss/typography')
   ],
 };

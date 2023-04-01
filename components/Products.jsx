@@ -10,13 +10,13 @@ const Products = ({ id, title, price, description, image }) => {
     useEffect(() => {
       setTimeout(() => {
         setLoading(true);
-      }, 500);
+      }, 400);
     }, []);
     const dispatch = useDispatch();
     const addProductToCart = () => {
       const Product = {
-        id,
         title,
+        id,
         price,
         description,
         image,
@@ -26,16 +26,16 @@ const Products = ({ id, title, price, description, image }) => {
   return (
     <>
       {loading ? (
-        <div className='relative flex flex-col  bg-white z-30 shadow-xl transition-all duration-500 linear rounded-md text-gray-500'>
+        <div className='relative flex flex-col  bg-white z-30 shadow-xl rounded-md text-gray-500'>
           <Link href={`/products/${id}`}>
               {/* <p className='absolute top-2 right-2 text-xs italic text-gray-400 z-20'>
                 {category}
               </p> */}
-              <div className='relative w-full h-[140px]  overflow-hidden rounded-t-md'>
+              <div className='relative w-full h-[160px]  overflow-hidden rounded-t-md'>
                 <Image src={image} alt={image} layout="fill" objectFit="cover" />
               </div>
           </Link>
-          <h4 className='my-1 lg:my-3  px-2 capitalize text-sm font-semibold '>{title}</h4>
+          <p className='my-1 lg:my-3  px-2 capitalize text-sm font-semibold '>{title}</p>
           <div className='flex  px-2'>
             {/* {Array(rating)
               .fill(1)
@@ -53,7 +53,7 @@ const Products = ({ id, title, price, description, image }) => {
             </div>
           )} */}
           <button
-            className=' mt-1 mx-auto bg-yellow-400 p-2 w-[90%] text-white rounded-md  uppercase mb-2 text-xs'
+            className=' mt-1 mx-auto bg-yellow-500 p-2 w-[90%] text-white rounded-md  uppercase mb-2 text-xs'
             onClick={addProductToCart}
           >
             Add To Cart

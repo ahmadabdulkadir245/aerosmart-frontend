@@ -5,7 +5,6 @@ import { CiShoppingCart } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import { GRAPHQL_URL } from '../../lib/constants'
 import { addToCart } from "../../slices/cartSlice";
 
 let prodId
@@ -21,9 +20,7 @@ function Product({product}) {
       description: product.description,
       image: product.imageUrl,
     };
-    console.log(Product)
     dispatch(addToCart(Product));
-
     if(checkout == true) {
       router.push('/checkout')
     }
@@ -39,32 +36,36 @@ function Product({product}) {
 
       <div className="flex items-center space-x-3 my-3">
       <div className="relative   w-[80px] h-[60px]  overflow-hidden rounded-md">
-        <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
+        <Image src={product.imageUrl} alt={product.title} layout="fill" objectFit="cover"/>
       </div>
       <div className="relative   w-[80px] h-[60px]  overflow-hidden rounded-md">
-        <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
+        <Image src={product.imageUrl} alt={product.title} layout="fill" objectFit="cover"/>
       </div>
       <div className="relative   w-[80px] h-[60px]  overflow-hidden rounded-md">
-        <Image src={product.imageUrl} alt={product.title}  fill  className=""/>
+        <Image src={product.imageUrl} alt={product.title} layout="fill" objectFit="cover"/>
       </div>
       </div>
 
       <div className="flex items-center justify-between mt-5">
         <div className="pt-1">
-          <h3 className=" font-titilliumWeb  font-semibold uppercase text-sm">{product.title}</h3>
+          <h2 className=" font-titilliumWeb  font-semibold uppercase text-sm">{product.title}</h2>
         </div>
-        <span className="bg-yellow-100 flex items-center space-x-1 p-1 font-changa  rounded-md">
-              <AiFillStar className="text-yellow-400 w-4 h-4"/>
+        <span className="bg-yellow-100 flex items-center space-x-1 px-1 font-changa  rounded-sm">
+              <AiFillStar className="text-yellow-400 w-3 h-3"/>
               <p className="text-yellow-400 text-sm">4.5</p>
         </span>
       </div>
 
       <div>
-        <h2 className="mt-1 capitalize text-sm underline tracking-wider ">description</h2>
-        <p className="text-xs">{product.description} this is text is added to make sure that the description text is up to two lines and if it is more that 4 lines you press the more button to see all text. and a show less link will be added to reduce the list of all descriptions</p>
+        <h3 className="mt-1 capitalize text-sm underline tracking-wider ">description</h3>
+        <div className="lg:px-[50px] font-poppins text-gray-700 tracking-wide leading-7 w-full">
+      <article className="prose prose-h1:text-3xl   prose-h1:font-semibold prose-h2:text-2xl  prose-h2:font-semibold prose-h2:mt-[0px] 
+      prose-h2:mb-[24px] prose-headings:capitalize prose-a:text-blue-500 hover:prose-a:text-blue-800 font-poppins" dangerouslySetInnerHTML={{ __html: product.description }} 
+      />
+       </div>
       </div>
 
-        <h3 >Colors</h3>
+        <h4 >Colors</h4>
       <div className="flex items-center justify-between my-3">
           <div className="flex items-center space-x-3">
           <div className="w-8 h-8 rounded-full bg-white shadow-sm"></div>
@@ -91,9 +92,7 @@ export default Product
 
 
 export const getServerSideProps = async (context) => {
-  // console.log(context)
   const {productId} = context.query
-  console.log(`thsi is the product Id ${productId}`)
   const graphqlQuery = {
     query: `
     {
@@ -106,7 +105,7 @@ export const getServerSideProps = async (context) => {
     }
     `
   };
-   const result = await fetch(GRAPHQL_URL, {
+   const result = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

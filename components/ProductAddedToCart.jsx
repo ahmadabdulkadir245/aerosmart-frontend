@@ -25,14 +25,14 @@ function ProductAddedToCart({ id, title, productQty, description, image }) {
 
 
   return (
-    <div className='grid grid-cols-3  px-3 gap-4 my-5'>
+    <div  className='grid grid-cols-3  px-3 gap-4 my-5'>
       
       <div className='relative w-full h-[120px] text-gray-600 '>
         <Image src={image} alt={title} layout='fill' objectFit="cover" />
       </div>
       <div className='col-span-2 '>
         <p className='truncate uppercase text-sm'>{title}</p>
-      <p className="lowercase leading-4 line-clamp-3 text-xs">{description} the description is too short so to make sure its up to two line</p>
+      <p className="lowercase leading-4 line-clamp-3 text-xs">{description} </p>
               <div className="flex-nowrap flex justify-between mt-[19px]">
         <div className=' flex justify-between items-center w-32'>
         <div
